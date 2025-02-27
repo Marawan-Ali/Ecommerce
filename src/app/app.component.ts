@@ -3,7 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './features/layout/navbar/navbar.component';
 import { NgxSpinnerComponent } from 'ngx-spinner';
 import { FooterComponent } from './features/layout/footer/footer.component';
-import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-root',
@@ -16,10 +15,6 @@ import { initFlowbite } from 'flowbite';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Ecommerce';
-
-  ngOnInit(): void {
-    initFlowbite();
-  }
 }
