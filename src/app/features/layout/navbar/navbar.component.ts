@@ -18,7 +18,7 @@ import { FlowbiteService } from '../../../core/services/flowbite/flowbite.servic
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   isLoggedIn: boolean = false;
   cartNumber!: Signal<number>;
 
@@ -36,14 +36,14 @@ export class NavbarComponent implements OnInit {
         this.isLoggedIn = false;
       }
     });
-  }
 
-  ngOnInit(): void {
-    this.flowbiteService.loadFlowbite((flowbite) => {
+    flowbiteService.loadFlowbite((flowbite) => {
       // Your custom code here
       console.log('Flowbite loaded', flowbite);
     });
   }
+
+
 
   changeLang(lang: string) {
     localStorage.setItem('lang', lang);
