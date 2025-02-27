@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import {
   Inject,
   Injectable,
+  OnInit,
   PLATFORM_ID,
   signal,
   WritableSignal,
 } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { BaseURL } from '../../constant/baseURL';
 import { isPlatformBrowser } from '@angular/common';
 import { Payload } from '../../../shared/interface/payload';
@@ -14,7 +15,7 @@ import { Payload } from '../../../shared/interface/payload';
 @Injectable({
   providedIn: 'root',
 })
-export class CartService {
+export class CartService implements OnInit {
   token: any;
 
   cartNumber: WritableSignal<number> = signal(0);
@@ -23,12 +24,16 @@ export class CartService {
     if (isPlatformBrowser(Id)) {
       this.token = { token: localStorage.getItem('userToken') || '' };
     }
-    this.getProduct().subscribe({
-      next: (res) => {
-        this.cartNumber.set(res.numOfCartItems);
-      },
-    });
+
   }
+
+ngOnInit(): void {
+  this.getProduct().subscribe({
+    next: (res) => {
+      this.cartNumber.set(res.numOfCartItems);
+    },
+  });
+}
 
   addProduct(productId: string): Observable<any> {
     return this.http.post(`${BaseURL.baseURL}/cart`, { productId: productId });
