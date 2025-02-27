@@ -16,7 +16,7 @@ import { initFlowbite } from 'flowbite';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Ecommerce';
 
   ngOnInit(): void {
