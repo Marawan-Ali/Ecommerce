@@ -55,7 +55,7 @@ ngOnInit(): void {
 
   checkOut(cartId: any, payload: Payload): Observable<any> {
     return this.http.post(
-      `${BaseURL.baseURL}/orders/checkout-session/${cartId}?url=https://ecommerce-omega-henna.vercel.app/#/`,
+      `${BaseURL.baseURL}/orders/checkout-session/${cartId}?url=http://localhost:4200`,
       { shippingAdress: payload }
     );
   }
